@@ -1,0 +1,131 @@
+---
+// Footer. All values come from src/config.ts (env-driven).
+import { site } from "../config";
+
+const year = new Date().getFullYear();
+const cols = [
+  {
+    title: "Project",
+    links: [
+      { label: "Documentation", href: site.links.docs },
+      { label: "Playground", href: site.links.playground },
+      { label: "GitHub", href: site.links.github },
+      { label: "npm", href: site.links.npm },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Imprint", href: site.links.imprint },
+      { label: "Privacy", href: site.links.privacy },
+    ],
+  },
+];
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <div class="col brand-col">
+      <a class="brand" href="/" aria-label={`${site.name} home`}>
+        <img src="/logo.svg" alt="" width="26" height="26" />
+        <span>{site.name}</span>
+      </a>
+      <p class="tag">{site.tagline}</p>
+    </div>
+    {
+      cols.map((c) => (
+        <nav class="col" aria-label={c.title}>
+          <h3>{c.title}</h3>
+          <ul>
+            {c.links.map((l) => (
+              <li>
+                <a href={l.href}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+  <div class="container bottom">
+    <span>&copy; {year} {site.name}</span>
+    {
+      site.university && (
+        <a class="dev" href={site.links.university}>
+          Developed at {site.university}
+        </a>
+      )
+    }
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    margin-top: 4rem;
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 2rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .tag {
+    color: var(--text-muted);
+    margin: 0.6rem 0 0;
+    font-size: 0.92rem;
+  }
+  .col h3 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+  }
+  .col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .col a {
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+  .bottom .dev {
+    color: var(--text-muted);
+  }
+  .bottom .dev:hover {
+    color: var(--text);
+  }
+  @media (max-width: 720px) {
+    .inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .brand-col {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

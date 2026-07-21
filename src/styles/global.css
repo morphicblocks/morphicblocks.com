@@ -1,0 +1,165 @@
+/* ─────────────────────────────────────────────────────────
+   Design tokens — restyle the whole site from here once the
+   brand is finalized. Values below are placeholders that nod
+   to the LUH palette (blue #00509b, teal #55bdcb).
+
+   Themes: light is :root, dark overrides via [data-theme="dark"].
+   The initial theme follows prefers-color-scheme (see Base.astro)
+   and can be toggled from the header; choice persists in
+   localStorage under "mb-theme".
+   ───────────────────────────────────────────────────────── */
+:root {
+  --accent: #00509b;
+  --accent-2: #55bdcb;
+  --accent-gradient: linear-gradient(120deg, #0a66c2, #55bdcb);
+
+  --bg: #ffffff;
+  --bg-alt: #f3f6fa;
+  --surface: #ffffff;
+  --border: #e4e9f1;
+
+  --text: #16273e;
+  --text-muted: #5a6880;
+  --link: var(--accent);
+  --eyebrow: var(--accent);
+
+  /* Hero — soft in light mode to keep page contrast gentle */
+  --hero-bg: linear-gradient(180deg, #e9f1fa 0%, #ffffff 100%);
+  --hero-glow: radial-gradient(
+      900px 400px at 15% -10%,
+      rgba(85, 189, 203, 0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 380px at 100% 0%,
+      rgba(10, 102, 194, 0.14),
+      transparent 55%
+    );
+  --hero-text: #12233a;
+  --hero-muted: #4c5d77;
+
+  --header-bg: color-mix(in srgb, #ffffff 85%, transparent);
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --shadow: 0 1px 2px rgba(18, 35, 58, 0.06), 0 8px 24px rgba(18, 35, 58, 0.06);
+
+  --maxw: 1120px;
+  --pad: clamp(1.1rem, 4vw, 2rem);
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas,
+    monospace;
+}
+
+[data-theme="dark"] {
+  --bg: #0c1522;
+  --bg-alt: #101b2b;
+  --surface: #13202f;
+  --border: #223349;
+
+  --text: #e7eef7;
+  --text-muted: #9cb0c8;
+  --link: #79b8ea;
+  --eyebrow: var(--accent-2);
+
+  --hero-bg: linear-gradient(180deg, #0b1a2b 0%, #0c1522 100%);
+  --hero-glow: radial-gradient(
+      900px 400px at 15% -10%,
+      rgba(85, 189, 203, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 380px at 100% 0%,
+      rgba(10, 102, 194, 0.28),
+      transparent 55%
+    );
+  --hero-text: #eaf1f8;
+  --hero-muted: #9db4cc;
+
+  --header-bg: color-mix(in srgb, #0c1522 85%, transparent);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.98rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    background 0.12s ease;
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.btn-primary {
+  background: var(--accent-gradient);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--hero-text);
+  border-color: color-mix(in srgb, var(--hero-text) 30%, transparent);
+}
+.btn-ghost:hover {
+  background: color-mix(in srgb, var(--hero-text) 8%, transparent);
+}

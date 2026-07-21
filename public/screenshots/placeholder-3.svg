@@ -1,0 +1,12 @@
+<!-- PLACEHOLDER — replace public/screenshots/placeholder-3.svg with a real app screenshot. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="system-ui, sans-serif">
+  <rect width="1200" height="700" rx="16" fill="#eef2f8"/>
+  <rect x="0" y="0" width="1200" height="56" rx="16" fill="#dfe7f2"/>
+  <circle cx="30" cy="28" r="7" fill="#c3ccdd"/>
+  <circle cx="54" cy="28" r="7" fill="#c3ccdd"/>
+  <circle cx="78" cy="28" r="7" fill="#c3ccdd"/>
+  <rect x="24" y="80" width="1152" height="360" rx="12" fill="#ffffff" stroke="#dbe3ee"/>
+  <rect x="24" y="464" width="1152" height="212" rx="12" fill="#101b2b"/>
+  <text x="600" y="280" text-anchor="middle" font-size="30" fill="#8794a8">Screenshot placeholder 3 — codespace &amp; preview</text>
+  <text x="600" y="318" text-anchor="middle" font-size="16" fill="#a5b1c2">replace public/screenshots/placeholder-3.svg</text>
+</svg>

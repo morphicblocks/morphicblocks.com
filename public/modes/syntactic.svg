@@ -1,0 +1,7 @@
+<!-- PLACEHOLDER — replace public/modes/syntactic.svg with a real capture of the syntactic mode. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 150" font-family="system-ui, sans-serif">
+  <rect width="360" height="150" rx="12" fill="#eef2f8"/>
+  <rect x="52" y="30" width="256" height="70" rx="10" fill="#101b2b"/>
+  <text x="70" y="72" font-size="15" font-family="ui-monospace, Menlo, monospace" fill="#55bdcb">console<tspan fill="#e7eef7">.</tspan><tspan fill="#79b8ea">log</tspan><tspan fill="#e7eef7">(</tspan><tspan fill="#dcd7a0">message</tspan><tspan fill="#e7eef7">);</tspan></text>
+  <text x="180" y="132" text-anchor="middle" font-size="11.5" fill="#93a1b5">placeholder — replace /modes/syntactic.svg</text>
+</svg>

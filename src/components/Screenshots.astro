@@ -1,0 +1,76 @@
+---
+// Screenshot slider — CSS scroll-snap, no JS. Images are placeholders in
+// public/screenshots/; replace the files to swap in real captures.
+const shots = [
+  {
+    src: "/screenshots/placeholder-1.svg",
+    alt: "Screenshot placeholder: toolbox and workspace",
+    caption: "Toolbox & workspace",
+  },
+  {
+    src: "/screenshots/placeholder-2.svg",
+    alt: "Screenshot placeholder: mode switching",
+    caption: "Mode switching",
+  },
+  {
+    src: "/screenshots/placeholder-3.svg",
+    alt: "Screenshot placeholder: codespace and preview",
+    caption: "Codespace & preview",
+  },
+];
+---
+
+<section class="container shots" aria-label="Screenshots">
+  <h2>See it in action</h2>
+  <p class="hint">Scroll or swipe — placeholders until real captures land.</p>
+  <div class="slider" tabindex="0">
+    {
+      shots.map((s) => (
+        <figure class="slide">
+          <img src={s.src} alt={s.alt} loading="lazy" />
+          <figcaption>{s.caption}</figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .shots {
+    margin-top: 4.5rem;
+  }
+  h2 {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+  }
+  .hint {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin: 0.4rem 0 1.2rem;
+  }
+  .slider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(100%, 860px);
+    gap: 1.1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.6rem;
+    scrollbar-width: thin;
+  }
+  .slide {
+    margin: 0;
+    scroll-snap-align: center;
+  }
+  .slide img {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  figcaption {
+    margin-top: 0.55rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+</style>

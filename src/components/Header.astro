@@ -1,0 +1,140 @@
+---
+// Header / top navigation. All values come from src/config.ts (env-driven).
+import { site } from "../config";
+
+const links = [
+  { label: "Docs", href: site.links.docs },
+  { label: "Playground", href: site.links.playground },
+  { label: "GitHub", href: site.links.github },
+];
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <img src="/logo.svg" alt="" width="32" height="32" />
+      <span class="brand-name">{site.name}</span>
+    </a>
+    <div class="right">
+      <nav class="nav" aria-label="Primary">
+        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+      <button id="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg
+          class="icon-moon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="17"
+          height="17"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg
+        >
+        <svg
+          class="icon-sun"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="17"
+          height="17"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><circle cx="12" cy="12" r="4"></circle><path
+            d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+          ></path></svg
+        >
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const el = document.documentElement;
+    const next = el.dataset.theme === "dark" ? "light" : "dark";
+    el.dataset.theme = next;
+    try {
+      localStorage.setItem("mb-theme", next);
+    } catch {
+      /* private mode etc. — non-fatal */
+    }
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--header-bg);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .brand-name {
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .nav {
+    display: flex;
+    gap: 1.4rem;
+  }
+  .nav a {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .nav a:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+  #theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+  #theme-toggle:hover {
+    color: var(--text);
+  }
+  .icon-sun {
+    display: none;
+  }
+  :global([data-theme="dark"]) .icon-sun {
+    display: block;
+  }
+  :global([data-theme="dark"]) .icon-moon {
+    display: none;
+  }
+  @media (max-width: 560px) {
+    .brand-name {
+      display: none;
+    }
+  }
+</style>
