@@ -1,0 +1,17 @@
+[
+  {
+    "src": "/screenshots/placeholder-1.svg",
+    "alt": "Screenshot placeholder: toolbox and workspace",
+    "caption": "Toolbox & workspace"
+  },
+  {
+    "src": "/screenshots/placeholder-2.svg",
+    "alt": "Screenshot placeholder: mode switching",
+    "caption": "Mode switching"
+  },
+  {
+    "src": "/screenshots/placeholder-3.svg",
+    "alt": "Screenshot placeholder: codespace and preview",
+    "caption": "Codespace & preview"
+  }
+]

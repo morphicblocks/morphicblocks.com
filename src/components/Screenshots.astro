@@ -1,23 +1,8 @@
 ---
 // Screenshot slider — CSS scroll-snap, no JS. Images are placeholders in
-// public/screenshots/; replace the files to swap in real captures.
-const shots = [
-  {
-    src: "/screenshots/placeholder-1.svg",
-    alt: "Screenshot placeholder: toolbox and workspace",
-    caption: "Toolbox & workspace",
-  },
-  {
-    src: "/screenshots/placeholder-2.svg",
-    alt: "Screenshot placeholder: mode switching",
-    caption: "Mode switching",
-  },
-  {
-    src: "/screenshots/placeholder-3.svg",
-    alt: "Screenshot placeholder: codespace and preview",
-    caption: "Codespace & preview",
-  },
-];
+// public/screenshots/; replace the files to swap in real captures. The per-image
+// data (paths, alt text, captions) lives in src/data/screenshots.json.
+import shots from "../data/screenshots.json";
 ---
 
 <section class="container shots" aria-label="Screenshots">
