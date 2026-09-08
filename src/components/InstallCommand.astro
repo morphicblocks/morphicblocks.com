@@ -1,6 +1,10 @@
 ---
 // Copyable install command, à la vite/astro/bun landing pages. Env-driven.
 import { site, externalAttrs } from "../config";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const cmd = `npm install ${site.npmPackage}`;
 ---
 
@@ -8,7 +12,7 @@ const cmd = `npm install ${site.npmPackage}`;
   <div class="cmd">
     <span class="prompt" aria-hidden="true">$</span>
     <code>{cmd}</code>
-    <button class="copy" type="button" data-cmd={cmd} aria-label="Copy install command">
+    <button class="copy" type="button" data-cmd={cmd} aria-label={t.installCopy}>
       <svg class="i-copy" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
       <svg class="i-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
     </button>
@@ -16,7 +20,7 @@ const cmd = `npm install ${site.npmPackage}`;
   {
     site.links.npm && (
       <a class="npm" href={site.links.npm} {...externalAttrs(site.links.npm)}>
-        View on npm →
+        {t.installNpm}
       </a>
     )
   }

@@ -1,0 +1,309 @@
+---
+// The landing page body. Rendered by both `/` and `/de/`; all copy comes from
+// src/i18n, so the two locales share one set of markup and styles.
+import { Code } from "astro:components";
+import Screenshots from "./Screenshots.astro";
+import InstallCommand from "./InstallCommand.astro";
+import { site, externalAttrs } from "../config";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Code samples stay in English, as usual for developer documentation.
+const quickstart = `import { MorphicBlocks } from "${site.npmPackage}";
+import definitions from "./definitions.json";
+import { behaviors } from "./behaviors";
+
+// definitions declare your blocks, elements, and modes
+const engine = new MorphicBlocks(
+  definitions.blocks,
+  behaviors,
+  definitions.elementTypes,
+);
+
+engine.mount({
+  workspaceContainer: document.getElementById("app"),
+  modes: definitions.modes,
+});
+
+// switch representation at runtime — blocks re-render
+engine.setModes({ workspaceMode: "syntactic" });`;
+
+// Placeholder captures in public/modes/, paired with the localized labels.
+const modeImages = [
+  "/modes/iconic.svg",
+  "/modes/lexical.svg",
+  "/modes/syntactic.svg",
+];
+---
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow">{t.heroEyebrow}</p>
+    <h1>{t.heroHeadline[0]}<br />{t.heroHeadline[1]}</h1>
+    <p class="lede">{t.heroLede}</p>
+    {
+      (site.links.docs || site.links.playground) && (
+        <div class="cta">
+          {site.links.docs && (
+            <a
+              class="btn btn-primary"
+              href={site.links.docs}
+              {...externalAttrs(site.links.docs)}>
+              {t.ctaDocs}
+            </a>
+          )}
+          {site.links.playground && (
+            <a
+              class="btn btn-ghost"
+              href={site.links.playground}
+              {...externalAttrs(site.links.playground)}>
+              {t.ctaPlayground}
+            </a>
+          )}
+        </div>
+      )
+    }
+    <InstallCommand />
+  </div>
+</section>
+
+<!-- Modes strip -->
+<section class="container modes">
+  <span class="modes-label">{t.modesLabel}</span>
+  <div class="modes-grid">
+    {
+      t.modes.map((m, i) => (
+        <div class="mode-card">
+          <span class="mode-name">{m.name}</span>
+          <img src={modeImages[i]} alt={m.alt} loading="lazy" />
+          <code class="mode-sample">{m.sample}</code>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<!-- Features -->
+<section class="container features">
+  {
+    t.features.map((f) => (
+      <article class="feature">
+        <h3>{f.title}</h3>
+        <p>{f.body}</p>
+      </article>
+    ))
+  }
+</section>
+
+<!-- Quick start -->
+<section class="container quickstart">
+  <div class="qs-head">
+    <div>
+      <h2>{t.quickstartTitle}</h2>
+      <p>{t.quickstartBody}</p>
+      {
+        site.links.docs && (
+          <a
+            class="qs-docs"
+            href={site.links.docs}
+            {...externalAttrs(site.links.docs)}>
+            {t.quickstartLink}
+          </a>
+        )
+      }
+    </div>
+    <div class="qs-install">
+      <InstallCommand />
+    </div>
+  </div>
+  <div class="qs-code">
+    <Code code={quickstart} lang="ts" theme="github-dark" />
+  </div>
+</section>
+
+<!-- Screenshots -->
+<Screenshots />
+
+<!-- Closing CTA -->
+<section class="container closing">
+  <div class="closing-card">
+    <h2>{t.closingTitle}</h2>
+    <p>{t.closingBody}</p>
+    {
+      site.links.github && (
+        <div class="cta">
+          <a
+            class="btn btn-primary"
+            href={site.links.github}
+            {...externalAttrs(site.links.github)}>
+            {t.closingCta}
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  /* Hero */
+  .hero {
+    background: var(--hero-glow), var(--hero-bg);
+    color: var(--hero-text);
+    padding-block: clamp(3.5rem, 9vw, 6.5rem);
+  }
+  .eyebrow {
+    color: var(--eyebrow);
+    font-weight: 600;
+    font-size: 0.86rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 1rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.3rem, 6vw, 3.75rem);
+    max-width: 15ch;
+  }
+  .lede {
+    color: var(--hero-muted);
+    font-size: clamp(1.02rem, 2.2vw, 1.22rem);
+    max-width: 58ch;
+    margin: 1.25rem 0 2rem;
+  }
+  .cta {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  /* Modes strip */
+  .modes {
+    margin-top: 2.6rem;
+    position: relative;
+    z-index: 2;
+  }
+  .modes-label {
+    display: block;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.9rem;
+  }
+  .modes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .mode-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .mode-card img {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+  .mode-name {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--eyebrow);
+    font-weight: 700;
+  }
+  .mode-sample {
+    font-family: var(--font-mono);
+    font-size: 0.98rem;
+    color: var(--text);
+  }
+
+  /* Features */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .feature h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.55rem;
+  }
+  .feature p {
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* Quick start */
+  .quickstart {
+    margin-top: 4.5rem;
+  }
+  .qs-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+  }
+  .qs-head h2 {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+  }
+  .qs-head p {
+    color: var(--text-muted);
+    max-width: 46ch;
+    margin: 0.5rem 0 0.7rem;
+  }
+  .qs-docs {
+    font-weight: 600;
+  }
+  .qs-install :global(.install) {
+    margin-top: 0;
+  }
+  .qs-code :global(pre) {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem;
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* Closing */
+  .closing {
+    margin-top: 4.5rem;
+  }
+  .closing-card {
+    background: var(--accent-gradient);
+    color: #fff;
+    border-radius: calc(var(--radius) + 4px);
+    padding: clamp(2rem, 5vw, 3.2rem);
+    text-align: center;
+  }
+  .closing-card h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  }
+  .closing-card p {
+    max-width: 52ch;
+    margin: 0.8rem auto 1.6rem;
+    color: rgba(255, 255, 255, 0.92);
+  }
+  .closing-card .btn-primary {
+    background: #fff;
+    color: var(--accent);
+  }
+
+  @media (max-width: 780px) {
+    .modes-grid,
+    .features {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

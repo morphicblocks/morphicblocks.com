@@ -1,0 +1,233 @@
+// ── UI strings, per language ─────────────────────────────────────────
+// English takes the tagline and description from the PUBLIC_* env vars so
+// `.env` stays the single source for those; every other display string lives
+// here. Adding a language means adding one entry below plus a page under
+// `src/pages/<lang>/`.
+import { site } from "../config";
+
+export const languages = { en: "English", de: "Deutsch" } as const;
+export type Lang = keyof typeof languages;
+export const defaultLang: Lang = "en";
+
+const en = {
+  // meta
+  tagline: site.tagline,
+  description: site.description,
+
+  // header
+  navDocs: "Docs",
+  navPlayground: "Playground",
+  navGithub: "GitHub",
+  homeSuffix: "home",
+  themeToggle: "Toggle color theme",
+  languageLabel: "Language",
+
+  // hero
+  heroEyebrow: "Open-source · TypeScript · built on Google Blockly",
+  heroHeadline: ["Render the same program", "in many modes."],
+  heroLede:
+    "Morphic Blocks is an embeddable TypeScript library built on top of " +
+    "Google Blockly. It renders one block model in multiple " +
+    "developer-defined modes — iconic, lexical, syntactic, or any " +
+    "representation you design — to support the gradual transition between " +
+    "block-based and text-based programming.",
+  ctaDocs: "Read the docs",
+  ctaPlayground: "Try the playground",
+
+  // modes strip
+  modesLabel: "Same statement, three modes",
+  modes: [
+    { name: "Iconic", alt: "Iconic mode placeholder", sample: "🖨  ( … )" },
+    {
+      name: "Lexical",
+      alt: "Lexical mode placeholder",
+      sample: "print ( message )",
+    },
+    {
+      name: "Syntactic",
+      alt: "Syntactic mode placeholder",
+      sample: "console.log(message);",
+    },
+  ],
+
+  // features
+  features: [
+    {
+      title: "One block, many modes",
+      body:
+        "A single morphic block carries several visual elements — icons, " +
+        "natural-language labels, and code templates. Modes decide which are " +
+        "shown, and switch at runtime without remounting.",
+    },
+    {
+      title: "Declarative & config-driven",
+      body:
+        "Define blocks in JSON, behaviors in TypeScript, and one CSS file per " +
+        "mode. Extend or restyle an environment by editing config, not " +
+        "Blockly's multi-file imperative setup.",
+    },
+    {
+      title: "Built for transition",
+      body:
+        "Render the same program as icons, blocks, or text to scaffold the " +
+        "gradual path from block-based to text-based programming — one " +
+        "framework, many learning stages.",
+    },
+  ],
+
+  // quick start
+  quickstartTitle: "Quick start",
+  quickstartBody:
+    "Install the package, hand it your definitions and behaviors, and mount. " +
+    "That's the whole loop — the docs cover modes, toolbox, codespace, and " +
+    "behaviors in depth.",
+  quickstartLink: "Read the full guide →",
+
+  // screenshots
+  screenshotsTitle: "See it in action",
+  screenshotsHint: "Scroll or swipe — placeholders until real captures land.",
+  screenshotsAria: "Screenshots",
+
+  // closing
+  closingTitle: "Build your own multi-modal environment",
+  closingBody:
+    "Embed Morphic Blocks as a library, define your modes, and ship a " +
+    "workspace that meets learners where they are.",
+  closingCta: "View on GitHub",
+
+  // install command
+  installCopy: "Copy install command",
+  installNpm: "View on npm →",
+
+  // footer
+  footerProject: "Project",
+  footerLegal: "Legal",
+  footerDocs: "Documentation",
+  footerPlayground: "Playground",
+  footerGithub: "GitHub",
+  footerNpm: "npm",
+  footerImprint: "Imprint",
+  footerPrivacy: "Privacy",
+  footerDisclaimer: "Disclaimer",
+  developedAt: "Developed at",
+};
+
+export type Strings = typeof en;
+
+const de: Strings = {
+  // meta
+  tagline: "Eine Definition, mehrere Repräsentationen.",
+  description:
+    "Eine quelloffene TypeScript-Bibliothek auf Basis von Google Blockly, " +
+    "die ein Blockmodell in mehreren selbst definierten Modi darstellt und " +
+    "den schrittweisen Übergang zwischen block- und textbasiertem " +
+    "Programmieren unterstützt.",
+
+  // header
+  navDocs: "Doku",
+  navPlayground: "Playground",
+  navGithub: "GitHub",
+  homeSuffix: "Startseite",
+  themeToggle: "Farbschema umschalten",
+  languageLabel: "Sprache",
+
+  // hero
+  heroEyebrow: "Open Source · TypeScript · basiert auf Google Blockly",
+  heroHeadline: ["Dasselbe Programm", "in vielen Modi darstellen."],
+  heroLede:
+    "Morphic Blocks ist eine einbettbare TypeScript-Bibliothek auf Basis von " +
+    "Google Blockly. Sie stellt ein einziges Blockmodell in mehreren selbst " +
+    "definierten Modi dar, ikonisch, lexikalisch, syntaktisch oder in jeder " +
+    "Repräsentation, die Sie entwerfen, und unterstützt so den schrittweisen " +
+    "Übergang zwischen block- und textbasiertem Programmieren.",
+  ctaDocs: "Zur Dokumentation",
+  ctaPlayground: "Playground ausprobieren",
+
+  // modes strip
+  modesLabel: "Dieselbe Anweisung, drei Modi",
+  modes: [
+    {
+      name: "Ikonisch",
+      alt: "Platzhalter für den ikonischen Modus",
+      sample: "🖨  ( … )",
+    },
+    {
+      name: "Lexikalisch",
+      alt: "Platzhalter für den lexikalischen Modus",
+      sample: "print ( message )",
+    },
+    {
+      name: "Syntaktisch",
+      alt: "Platzhalter für den syntaktischen Modus",
+      sample: "console.log(message);",
+    },
+  ],
+
+  // features
+  features: [
+    {
+      title: "Ein Block, viele Modi",
+      body:
+        "Ein einzelner Morphic Block trägt mehrere visuelle Elemente: " +
+        "Symbole, sprachliche Beschriftungen und Code-Vorlagen. Die Modi " +
+        "bestimmen, welche davon sichtbar sind, und lassen sich zur Laufzeit " +
+        "umschalten, ohne neu einzubinden.",
+    },
+    {
+      title: "Deklarativ und konfigurationsgesteuert",
+      body:
+        "Blöcke in JSON, Verhalten in TypeScript und eine CSS-Datei pro " +
+        "Modus. Eine Umgebung wird über die Konfiguration erweitert oder " +
+        "umgestaltet, nicht über Blocklys imperatives Setup mit vielen " +
+        "Dateien.",
+    },
+    {
+      title: "Für den Übergang gemacht",
+      body:
+        "Stellen Sie dasselbe Programm als Symbole, Blöcke oder Text dar und " +
+        "begleiten Sie damit den schrittweisen Weg vom block- zum " +
+        "textbasierten Programmieren, mit einem Framework über viele " +
+        "Lernstufen hinweg.",
+    },
+  ],
+
+  // quick start
+  quickstartTitle: "Schnellstart",
+  quickstartBody:
+    "Paket installieren, Definitionen und Verhalten übergeben, einbinden. " +
+    "Das ist der gesamte Ablauf. Die Dokumentation behandelt Modi, Toolbox, " +
+    "Codespace und Verhalten im Detail.",
+  quickstartLink: "Zur vollständigen Anleitung →",
+
+  // screenshots
+  screenshotsTitle: "So sieht es aus",
+  screenshotsHint:
+    "Scrollen oder wischen. Platzhalter, bis echte Aufnahmen vorliegen.",
+  screenshotsAria: "Screenshots",
+
+  // closing
+  closingTitle: "Bauen Sie Ihre eigene multimodale Umgebung",
+  closingBody:
+    "Binden Sie Morphic Blocks als Bibliothek ein, definieren Sie Ihre Modi " +
+    "und liefern Sie einen Arbeitsbereich, der Lernende dort abholt, wo sie " +
+    "stehen.",
+  closingCta: "Auf GitHub ansehen",
+
+  // install command
+  installCopy: "Installationsbefehl kopieren",
+  installNpm: "Auf npm ansehen →",
+
+  // footer
+  footerProject: "Projekt",
+  footerLegal: "Rechtliches",
+  footerDocs: "Dokumentation",
+  footerPlayground: "Playground",
+  footerGithub: "GitHub",
+  footerNpm: "npm",
+  footerImprint: "Impressum",
+  footerPrivacy: "Datenschutz",
+  footerDisclaimer: "Haftungsausschluss",
+  developedAt: "Entwickelt an der",
+};
+
+export const ui: Record<Lang, Strings> = { en, de };

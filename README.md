@@ -54,11 +54,36 @@ public/            # static assets served as-is
 src/
   config.ts        # single source for all env-driven values
   env.d.ts         # typed env vars
+  i18n/ui.ts       # display strings, per language
+  i18n/utils.ts    # language detection and locale-aware paths
+  data/screenshots.json  # slider images + per-language captions
   layouts/Base.astro
-  components/Header.astro, Footer.astro
-  pages/index.astro
+  components/Header.astro, Footer.astro, Landing.astro
+  pages/index.astro      # English (default, unprefixed)
+  pages/de/index.astro   # German
   styles/global.css   # design tokens — restyle the site from here
 ```
+
+## Languages
+
+English is the default and lives at `/`; German lives at `/de/`. The header has
+a language toggle styled like the theme toggle: it shows the language it
+switches to (`DE` on the English page) and links to the current page in that
+language. With only two languages it reads as a toggle; if more are added it
+cycles through them, and a list or dropdown would suit better.
+
+All display copy sits in `src/i18n/ui.ts`, one entry per language. English
+takes its tagline and description from the `PUBLIC_SITE_TAGLINE` /
+`PUBLIC_SITE_DESCRIPTION` variables so `.env` stays the source for those;
+everything else is literal text. `src/i18n/ui.ts` types the German entry
+against the English one, so a missing key is a type error rather than a blank
+spot on the page.
+
+Both locales render the same `components/Landing.astro`, so markup and styles
+are written once. To add a language: add an entry to `ui.ts`, list its code in
+`languages`, add it to `i18n.locales` in `astro.config.mjs`, and create
+`src/pages/<code>/index.astro` mirroring the German page. Code samples stay in
+English.
 
 ## Notes
 

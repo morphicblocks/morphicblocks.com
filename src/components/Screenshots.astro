@@ -1,19 +1,24 @@
 ---
 // Screenshot slider — CSS scroll-snap, no JS. Images are placeholders in
 // public/screenshots/; replace the files to swap in real captures. The per-image
-// data (paths, alt text, captions) lives in src/data/screenshots.json.
+// data (paths, alt text, captions per language) lives in
+// src/data/screenshots.json.
 import shots from "../data/screenshots.json";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section class="container shots" aria-label="Screenshots">
-  <h2>See it in action</h2>
-  <p class="hint">Scroll or swipe — placeholders until real captures land.</p>
+<section class="container shots" aria-label={t.screenshotsAria}>
+  <h2>{t.screenshotsTitle}</h2>
+  <p class="hint">{t.screenshotsHint}</p>
   <div class="slider" tabindex="0">
     {
       shots.map((s) => (
         <figure class="slide">
-          <img src={s.src} alt={s.alt} loading="lazy" />
-          <figcaption>{s.caption}</figcaption>
+          <img src={s.src} alt={s.alt[lang]} loading="lazy" />
+          <figcaption>{s.caption[lang]}</figcaption>
         </figure>
       ))
     }

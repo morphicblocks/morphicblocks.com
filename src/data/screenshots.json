@@ -1,17 +1,35 @@
 [
   {
     "src": "/screenshots/placeholder-1.svg",
-    "alt": "Screenshot placeholder: toolbox and workspace",
-    "caption": "Toolbox & workspace"
+    "alt": {
+      "en": "Screenshot placeholder: toolbox and workspace",
+      "de": "Screenshot-Platzhalter: Toolbox und Arbeitsbereich"
+    },
+    "caption": {
+      "en": "Toolbox & workspace",
+      "de": "Toolbox und Arbeitsbereich"
+    }
   },
   {
     "src": "/screenshots/placeholder-2.svg",
-    "alt": "Screenshot placeholder: mode switching",
-    "caption": "Mode switching"
+    "alt": {
+      "en": "Screenshot placeholder: mode switching",
+      "de": "Screenshot-Platzhalter: Moduswechsel"
+    },
+    "caption": {
+      "en": "Mode switching",
+      "de": "Moduswechsel"
+    }
   },
   {
     "src": "/screenshots/placeholder-3.svg",
-    "alt": "Screenshot placeholder: codespace and preview",
-    "caption": "Codespace & preview"
+    "alt": {
+      "en": "Screenshot placeholder: codespace and preview",
+      "de": "Screenshot-Platzhalter: Codespace und Vorschau"
+    },
+    "caption": {
+      "en": "Codespace & preview",
+      "de": "Codespace und Vorschau"
+    }
   }
 ]

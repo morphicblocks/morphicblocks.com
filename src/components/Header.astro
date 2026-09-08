@@ -1,18 +1,36 @@
 ---
-// Header / top navigation. All values come from src/config.ts (env-driven).
+// Header / top navigation. URLs come from src/config.ts (env-driven), labels
+// from src/i18n.
 import { site, externalAttrs } from "../config";
+import {
+  getLangFromUrl,
+  useTranslations,
+  homePath,
+  pathWithLang,
+} from "../i18n/utils";
+import { languages, type Lang } from "../i18n/ui";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+// Two languages, so the switcher is a toggle like the theme button: it shows
+// the language it switches to. With more languages it cycles through them.
+const langCodes = Object.keys(languages) as Lang[];
+const nextLang = langCodes[(langCodes.indexOf(lang) + 1) % langCodes.length];
 
 // Links whose PUBLIC_* var is unset are dropped rather than rendered dead.
 const links = [
-  { label: "Docs", href: site.links.docs },
-  { label: "Playground", href: site.links.playground },
-  { label: "GitHub", href: site.links.github },
+  { label: t.navDocs, href: site.links.docs },
+  { label: t.navPlayground, href: site.links.playground },
+  { label: t.navGithub, href: site.links.github },
 ].filter((l) => l.href);
 ---
 
 <header class="site-header">
   <div class="container bar">
-    <a class="brand" href="/" aria-label={`${site.name} home`}>
+    <a
+      class="brand"
+      href={homePath(lang)}
+      aria-label={`${site.name} ${t.homeSuffix}`}>
       <img src="/logo.svg" alt="" width="32" height="32" />
       <span class="brand-name">{site.name}</span>
     </a>
@@ -24,36 +42,47 @@ const links = [
           </a>
         ))}
       </nav>
-      <button id="theme-toggle" type="button" aria-label="Toggle color theme">
-        <svg
-          class="icon-moon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="17"
-          height="17"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg
-        >
-        <svg
-          class="icon-sun"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="17"
-          height="17"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><circle cx="12" cy="12" r="4"></circle><path
-            d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-          ></path></svg
-        >
-      </button>
+      <div class="toggles">
+        <a
+          class="lang-toggle"
+          href={pathWithLang(Astro.url, nextLang)}
+          hreflang={nextLang}
+          lang={nextLang}
+          title={languages[nextLang]}
+          aria-label={`${t.languageLabel}: ${languages[nextLang]}`}>
+          {nextLang.toUpperCase()}
+        </a>
+        <button id="theme-toggle" type="button" aria-label={t.themeToggle}>
+          <svg
+            class="icon-moon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="17"
+            height="17"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg
+          >
+          <svg
+            class="icon-sun"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="17"
+            height="17"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><circle cx="12" cy="12" r="4"></circle><path
+              d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+            ></path></svg
+          >
+        </button>
+      </div>
     </div>
   </div>
 </header>
@@ -114,6 +143,12 @@ const links = [
     color: var(--text);
     text-decoration: none;
   }
+  .toggles {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .lang-toggle,
   #theme-toggle {
     display: grid;
     place-items: center;
@@ -125,8 +160,17 @@ const links = [
     color: var(--text-muted);
     cursor: pointer;
   }
+  .lang-toggle:hover,
   #theme-toggle:hover {
     color: var(--text);
+  }
+  .lang-toggle {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .lang-toggle:hover {
+    text-decoration: none;
   }
   .icon-sun {
     display: none;

@@ -1,26 +1,29 @@
 ---
-// Footer. All values come from src/config.ts (env-driven).
+// Footer. URLs come from src/config.ts (env-driven), labels from src/i18n.
 import { site, externalAttrs } from "../config";
+import { getLangFromUrl, useTranslations, homePath } from "../i18n/utils";
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
 // Links whose PUBLIC_* var is unset are dropped, and a column that ends up
 // empty is not rendered at all.
 const cols = [
   {
-    title: "Project",
+    title: t.footerProject,
     links: [
-      { label: "Documentation", href: site.links.docs },
-      { label: "Playground", href: site.links.playground },
-      { label: "GitHub", href: site.links.github },
-      { label: "npm", href: site.links.npm },
+      { label: t.footerDocs, href: site.links.docs },
+      { label: t.footerPlayground, href: site.links.playground },
+      { label: t.footerGithub, href: site.links.github },
+      { label: t.footerNpm, href: site.links.npm },
     ],
   },
   {
-    title: "Legal",
+    title: t.footerLegal,
     links: [
-      { label: "Imprint", href: site.links.imprint },
-      { label: "Privacy", href: site.links.privacy },
-      { label: "Disclaimer", href: site.links.disclaimer },
+      { label: t.footerImprint, href: site.links.imprint },
+      { label: t.footerPrivacy, href: site.links.privacy },
+      { label: t.footerDisclaimer, href: site.links.disclaimer },
     ],
   },
 ]
@@ -31,11 +34,14 @@ const cols = [
 <footer class="site-footer">
   <div class="container inner">
     <div class="col brand-col">
-      <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <a
+        class="brand"
+        href={homePath(lang)}
+        aria-label={`${site.name} ${t.homeSuffix}`}>
         <img src="/logo.svg" alt="" width="26" height="26" />
         <span>{site.name}</span>
       </a>
-      <p class="tag">{site.tagline}</p>
+      <p class="tag">{t.tagline}</p>
     </div>
     {
       cols.map((c) => (
@@ -63,10 +69,12 @@ const cols = [
             class="dev"
             href={site.links.university}
             {...externalAttrs(site.links.university)}>
-            Developed at {site.university}
+            {t.developedAt} {site.university}
           </a>
         ) : (
-          <span class="dev">Developed at {site.university}</span>
+          <span class="dev">
+            {t.developedAt} {site.university}
+          </span>
         ))
     }
   </div>
