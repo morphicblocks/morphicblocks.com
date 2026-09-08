@@ -14,6 +14,9 @@ interface ImportMetaEnv {
   readonly PUBLIC_IMPRINT_URL: string;
   readonly PUBLIC_PRIVACY_URL: string;
   readonly PUBLIC_DISCLAIMER_URL: string;
+  readonly PUBLIC_IMPRINT_URL_EN: string;
+  readonly PUBLIC_PRIVACY_URL_EN: string;
+  readonly PUBLIC_DISCLAIMER_URL_EN: string;
 }
 
 interface ImportMeta {

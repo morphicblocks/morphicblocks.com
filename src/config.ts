@@ -9,6 +9,15 @@ const env = import.meta.env;
 // entirely rather than rendering a dead one.
 const link = (value?: string) => value || undefined;
 
+// Legal pages exist per language: the university publishes English versions of
+// some of them. `PUBLIC_*_URL` is the fallback used by every language;
+// `PUBLIC_*_URL_EN` overrides it on the English pages. Leave the override unset
+// when no translated page exists, and both languages share the base URL.
+const legalLink = (base?: string, en?: string) => ({
+  en: link(en) ?? link(base),
+  de: link(base),
+});
+
 export const site = {
   name: env.PUBLIC_SITE_NAME ?? "",
   tagline: env.PUBLIC_SITE_TAGLINE ?? "",
@@ -21,9 +30,14 @@ export const site = {
     github: link(env.PUBLIC_GITHUB_URL),
     npm: link(env.PUBLIC_NPM_URL),
     university: link(env.PUBLIC_UNIVERSITY_URL),
-    imprint: link(env.PUBLIC_IMPRINT_URL),
-    privacy: link(env.PUBLIC_PRIVACY_URL),
-    disclaimer: link(env.PUBLIC_DISCLAIMER_URL),
+  },
+  legal: {
+    imprint: legalLink(env.PUBLIC_IMPRINT_URL, env.PUBLIC_IMPRINT_URL_EN),
+    privacy: legalLink(env.PUBLIC_PRIVACY_URL, env.PUBLIC_PRIVACY_URL_EN),
+    disclaimer: legalLink(
+      env.PUBLIC_DISCLAIMER_URL,
+      env.PUBLIC_DISCLAIMER_URL_EN,
+    ),
   },
 };
 

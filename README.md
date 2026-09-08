@@ -40,6 +40,9 @@ cp .env.example .env   # then edit .env
 | `PUBLIC_IMPRINT_URL` | Imprint link |
 | `PUBLIC_PRIVACY_URL` | Privacy link |
 | `PUBLIC_DISCLAIMER_URL` | Disclaimer (Haftungsausschluss) link |
+| `PUBLIC_IMPRINT_URL_EN` | English imprint, if a translated page exists |
+| `PUBLIC_PRIVACY_URL_EN` | English privacy page, if one exists |
+| `PUBLIC_DISCLAIMER_URL_EN` | English disclaimer, if one exists |
 
 These are build-time `PUBLIC_*` vars baked into the static output. On
 Cloudflare Pages, set them in the project's environment variables. Reading
@@ -90,8 +93,9 @@ English.
 - The logo (`public/logo.svg`) is a placeholder — replace the file to swap it
   everywhere.
 - `Imprint` / `Privacy` / `Disclaimer` point wherever `PUBLIC_IMPRINT_URL`,
-  `PUBLIC_PRIVACY_URL` and `PUBLIC_DISCLAIMER_URL` say; legal pages/data to
-  follow.
+  `PUBLIC_PRIVACY_URL` and `PUBLIC_DISCLAIMER_URL` say. Each has an optional
+  `_EN` counterpart used on the English pages; leave it empty when no
+  translated page exists and both languages fall back to the base URL.
 - A link whose `PUBLIC_*` variable is unset or empty is **not rendered at all**
   (no dead `#` links). A footer column with no remaining links is dropped too.
 - Links to other sites open in a new tab; in-site paths do not.
