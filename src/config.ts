@@ -19,6 +19,7 @@ export const site = {
     university: env.PUBLIC_UNIVERSITY_URL ?? "#",
     imprint: env.PUBLIC_IMPRINT_URL ?? "#",
     privacy: env.PUBLIC_PRIVACY_URL ?? "#",
+    disclaimer: env.PUBLIC_DISCLAIMER_URL ?? "#",
   },
 };
 

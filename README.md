@@ -39,6 +39,7 @@ cp .env.example .env   # then edit .env
 | `PUBLIC_GITHUB_URL` | Repository link |
 | `PUBLIC_IMPRINT_URL` | Imprint link |
 | `PUBLIC_PRIVACY_URL` | Privacy link |
+| `PUBLIC_DISCLAIMER_URL` | Disclaimer (Haftungsausschluss) link |
 
 These are build-time `PUBLIC_*` vars baked into the static output. On
 Cloudflare Pages, set them in the project's environment variables. Reading
@@ -63,6 +64,7 @@ src/
 
 - The logo (`public/logo.svg`) is a placeholder — replace the file to swap it
   everywhere.
-- `Imprint` / `Privacy` point wherever `PUBLIC_IMPRINT_URL` / `PUBLIC_PRIVACY_URL`
-  say; legal pages/data to follow.
+- `Imprint` / `Privacy` / `Disclaimer` point wherever `PUBLIC_IMPRINT_URL`,
+  `PUBLIC_PRIVACY_URL` and `PUBLIC_DISCLAIMER_URL` say; legal pages/data to
+  follow.
 - Deploy target: Cloudflare Pages (static output).
