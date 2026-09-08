@@ -1,6 +1,6 @@
 ---
 // Footer. All values come from src/config.ts (env-driven).
-import { site } from "../config";
+import { site, externalAttrs } from "../config";
 
 const year = new Date().getFullYear();
 const cols = [
@@ -39,7 +39,9 @@ const cols = [
           <ul>
             {c.links.map((l) => (
               <li>
-                <a href={l.href}>{l.label}</a>
+                <a href={l.href} {...externalAttrs(l.href)}>
+                  {l.label}
+                </a>
               </li>
             ))}
           </ul>
@@ -51,7 +53,10 @@ const cols = [
     <span>&copy; {year} {site.name}</span>
     {
       site.university && (
-        <a class="dev" href={site.links.university}>
+        <a
+          class="dev"
+          href={site.links.university}
+          {...externalAttrs(site.links.university)}>
           Developed at {site.university}
         </a>
       )

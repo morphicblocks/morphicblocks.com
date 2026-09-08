@@ -3,7 +3,7 @@ import { Code } from "astro:components";
 import Base from "../layouts/Base.astro";
 import Screenshots from "../components/Screenshots.astro";
 import InstallCommand from "../components/InstallCommand.astro";
-import { site } from "../config";
+import { site, externalAttrs } from "../config";
 
 const quickstart = `import { MorphicBlocks } from "${site.npmPackage}";
 import definitions from "./definitions.json";
@@ -73,9 +73,15 @@ const modes = [
         block-based and text-based programming.
       </p>
       <div class="cta">
-        <a class="btn btn-primary" href={site.links.docs}>Read the docs</a>
-        <a class="btn btn-ghost" href={site.links.playground}
-          >Try the playground</a
+        <a
+          class="btn btn-primary"
+          href={site.links.docs}
+          {...externalAttrs(site.links.docs)}>Read the docs</a
+        >
+        <a
+          class="btn btn-ghost"
+          href={site.links.playground}
+          {...externalAttrs(site.links.playground)}>Try the playground</a
         >
       </div>
       <InstallCommand />
@@ -120,7 +126,11 @@ const modes = [
           mount. That's the whole loop — the docs cover modes, toolbox,
           codespace, and behaviors in depth.
         </p>
-        <a class="qs-docs" href={site.links.docs}>Read the full guide →</a>
+        <a
+          class="qs-docs"
+          href={site.links.docs}
+          {...externalAttrs(site.links.docs)}>Read the full guide →</a
+        >
       </div>
       <div class="qs-install">
         <InstallCommand />
@@ -143,7 +153,11 @@ const modes = [
         workspace that meets learners where they are.
       </p>
       <div class="cta">
-        <a class="btn btn-primary" href={site.links.github}>View on GitHub</a>
+        <a
+          class="btn btn-primary"
+          href={site.links.github}
+          {...externalAttrs(site.links.github)}>View on GitHub</a
+        >
       </div>
     </div>
   </section>

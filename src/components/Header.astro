@@ -1,6 +1,6 @@
 ---
 // Header / top navigation. All values come from src/config.ts (env-driven).
-import { site } from "../config";
+import { site, externalAttrs } from "../config";
 
 const links = [
   { label: "Docs", href: site.links.docs },
@@ -17,7 +17,11 @@ const links = [
     </a>
     <div class="right">
       <nav class="nav" aria-label="Primary">
-        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+        {links.map((l) => (
+          <a href={l.href} {...externalAttrs(l.href)}>
+            {l.label}
+          </a>
+        ))}
       </nav>
       <button id="theme-toggle" type="button" aria-label="Toggle color theme">
         <svg
