@@ -67,4 +67,7 @@ src/
 - `Imprint` / `Privacy` / `Disclaimer` point wherever `PUBLIC_IMPRINT_URL`,
   `PUBLIC_PRIVACY_URL` and `PUBLIC_DISCLAIMER_URL` say; legal pages/data to
   follow.
+- A link whose `PUBLIC_*` variable is unset or empty is **not rendered at all**
+  (no dead `#` links). A footer column with no remaining links is dropped too.
+- Links to other sites open in a new tab; in-site paths do not.
 - Deploy target: Cloudflare Pages (static output).

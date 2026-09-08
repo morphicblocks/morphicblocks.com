@@ -3,6 +3,8 @@
 import { site, externalAttrs } from "../config";
 
 const year = new Date().getFullYear();
+// Links whose PUBLIC_* var is unset are dropped, and a column that ends up
+// empty is not rendered at all.
 const cols = [
   {
     title: "Project",
@@ -21,7 +23,9 @@ const cols = [
       { label: "Disclaimer", href: site.links.disclaimer },
     ],
   },
-];
+]
+  .map((c) => ({ ...c, links: c.links.filter((l) => l.href) }))
+  .filter((c) => c.links.length > 0);
 ---
 
 <footer class="site-footer">
@@ -53,14 +57,17 @@ const cols = [
   <div class="container bottom">
     <span>&copy; {year} {site.name}</span>
     {
-      site.university && (
-        <a
-          class="dev"
-          href={site.links.university}
-          {...externalAttrs(site.links.university)}>
-          Developed at {site.university}
-        </a>
-      )
+      site.university &&
+        (site.links.university ? (
+          <a
+            class="dev"
+            href={site.links.university}
+            {...externalAttrs(site.links.university)}>
+            Developed at {site.university}
+          </a>
+        ) : (
+          <span class="dev">Developed at {site.university}</span>
+        ))
     }
   </div>
 </footer>

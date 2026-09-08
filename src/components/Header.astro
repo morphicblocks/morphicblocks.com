@@ -2,11 +2,12 @@
 // Header / top navigation. All values come from src/config.ts (env-driven).
 import { site, externalAttrs } from "../config";
 
+// Links whose PUBLIC_* var is unset are dropped rather than rendered dead.
 const links = [
   { label: "Docs", href: site.links.docs },
   { label: "Playground", href: site.links.playground },
   { label: "GitHub", href: site.links.github },
-];
+].filter((l) => l.href);
 ---
 
 <header class="site-header">

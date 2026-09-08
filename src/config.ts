@@ -5,6 +5,10 @@
 // whole site updates from this single place. See `.env.example`.
 const env = import.meta.env;
 
+// Undefined when a variable is unset or empty, so callers can skip the link
+// entirely rather than rendering a dead one.
+const link = (value?: string) => value || undefined;
+
 export const site = {
   name: env.PUBLIC_SITE_NAME ?? "",
   tagline: env.PUBLIC_SITE_TAGLINE ?? "",
@@ -12,14 +16,14 @@ export const site = {
   university: env.PUBLIC_UNIVERSITY ?? "",
   npmPackage: env.PUBLIC_NPM_PACKAGE ?? "",
   links: {
-    docs: env.PUBLIC_DOCS_URL ?? "#",
-    playground: env.PUBLIC_PLAYGROUND_URL ?? "#",
-    github: env.PUBLIC_GITHUB_URL ?? "#",
-    npm: env.PUBLIC_NPM_URL ?? "#",
-    university: env.PUBLIC_UNIVERSITY_URL ?? "#",
-    imprint: env.PUBLIC_IMPRINT_URL ?? "#",
-    privacy: env.PUBLIC_PRIVACY_URL ?? "#",
-    disclaimer: env.PUBLIC_DISCLAIMER_URL ?? "#",
+    docs: link(env.PUBLIC_DOCS_URL),
+    playground: link(env.PUBLIC_PLAYGROUND_URL),
+    github: link(env.PUBLIC_GITHUB_URL),
+    npm: link(env.PUBLIC_NPM_URL),
+    university: link(env.PUBLIC_UNIVERSITY_URL),
+    imprint: link(env.PUBLIC_IMPRINT_URL),
+    privacy: link(env.PUBLIC_PRIVACY_URL),
+    disclaimer: link(env.PUBLIC_DISCLAIMER_URL),
   },
 };
 

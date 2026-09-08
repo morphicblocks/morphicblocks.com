@@ -72,18 +72,28 @@ const modes = [
         representation you design — to support the gradual transition between
         block-based and text-based programming.
       </p>
-      <div class="cta">
-        <a
-          class="btn btn-primary"
-          href={site.links.docs}
-          {...externalAttrs(site.links.docs)}>Read the docs</a
-        >
-        <a
-          class="btn btn-ghost"
-          href={site.links.playground}
-          {...externalAttrs(site.links.playground)}>Try the playground</a
-        >
-      </div>
+      {
+        (site.links.docs || site.links.playground) && (
+          <div class="cta">
+            {site.links.docs && (
+              <a
+                class="btn btn-primary"
+                href={site.links.docs}
+                {...externalAttrs(site.links.docs)}>
+                Read the docs
+              </a>
+            )}
+            {site.links.playground && (
+              <a
+                class="btn btn-ghost"
+                href={site.links.playground}
+                {...externalAttrs(site.links.playground)}>
+                Try the playground
+              </a>
+            )}
+          </div>
+        )
+      }
       <InstallCommand />
     </div>
   </section>
@@ -126,11 +136,16 @@ const modes = [
           mount. That's the whole loop — the docs cover modes, toolbox,
           codespace, and behaviors in depth.
         </p>
-        <a
-          class="qs-docs"
-          href={site.links.docs}
-          {...externalAttrs(site.links.docs)}>Read the full guide →</a
-        >
+        {
+          site.links.docs && (
+            <a
+              class="qs-docs"
+              href={site.links.docs}
+              {...externalAttrs(site.links.docs)}>
+              Read the full guide →
+            </a>
+          )
+        }
       </div>
       <div class="qs-install">
         <InstallCommand />
@@ -152,13 +167,18 @@ const modes = [
         Embed Morphic Blocks as a library, define your modes, and ship a
         workspace that meets learners where they are.
       </p>
-      <div class="cta">
-        <a
-          class="btn btn-primary"
-          href={site.links.github}
-          {...externalAttrs(site.links.github)}>View on GitHub</a
-        >
-      </div>
+      {
+        site.links.github && (
+          <div class="cta">
+            <a
+              class="btn btn-primary"
+              href={site.links.github}
+              {...externalAttrs(site.links.github)}>
+              View on GitHub
+            </a>
+          </div>
+        )
+      }
     </div>
   </section>
 </Base>

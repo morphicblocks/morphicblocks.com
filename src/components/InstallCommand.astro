@@ -13,9 +13,13 @@ const cmd = `npm install ${site.npmPackage}`;
       <svg class="i-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
     </button>
   </div>
-  <a class="npm" href={site.links.npm} {...externalAttrs(site.links.npm)}>
-    View on npm →
-  </a>
+  {
+    site.links.npm && (
+      <a class="npm" href={site.links.npm} {...externalAttrs(site.links.npm)}>
+        View on npm →
+      </a>
+    )
+  }
 </div>
 
 <script>
