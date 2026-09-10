@@ -15,10 +15,15 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { title = site.name, description = t.description } = Astro.props;
 
+// Absolute URLs, which link previews and canonical tags both require.
+const base = Astro.site ?? Astro.url;
+const canonical = new URL(Astro.url.pathname, base).href;
+const ogImage = new URL("og.png", base).href;
+
 // One alternate per language so search engines pair the two versions up.
 const alternates = (Object.keys(languages) as Lang[]).map((code) => ({
   code,
-  href: new URL(pathWithLang(Astro.url, code), Astro.site ?? Astro.url).href,
+  href: new URL(pathWithLang(Astro.url, code), base).href,
 }));
 ---
 
@@ -48,10 +53,18 @@ const alternates = (Object.keys(languages) as Lang[]).map((code) => ({
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={lang} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name}: ${t.tagline}`} />
+    <meta name="twitter:card" content="summary_large_image" />
     {
       alternates.map((a) => (
         <link rel="alternate" hreflang={a.code} href={a.href} />
