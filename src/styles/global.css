@@ -1,7 +1,12 @@
+@import "./tokens.css";
+
 /* ─────────────────────────────────────────────────────────
-   Design tokens — restyle the whole site from here once the
-   brand is finalized. Values below are placeholders that nod
-   to the LUH palette (blue #00509b, teal #55bdcb).
+   Design tokens — restyle the whole site from here.
+
+   The two brand colors come from tokens.css, copied from
+   morphic-meta/brand (see palette.md there). Everything else
+   is this site's own: the neutrals are deliberately blue-tinted
+   rather than the LUH corporate grays.
 
    Themes: light is :root, dark overrides via [data-theme="dark"].
    The initial theme follows prefers-color-scheme (see Base.astro)
@@ -9,9 +14,9 @@
    localStorage under "mb-theme".
    ───────────────────────────────────────────────────────── */
 :root {
-  --accent: #00509b;
-  --accent-2: #55bdcb;
-  --accent-gradient: linear-gradient(120deg, #0a66c2, #55bdcb);
+  --accent: var(--brand-primary);
+  --accent-2: var(--brand-secondary);
+  --accent-gradient: linear-gradient(120deg, #0a66c2, var(--brand-secondary));
 
   --bg: #ffffff;
   --bg-alt: #f3f6fa;
