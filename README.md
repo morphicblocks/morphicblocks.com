@@ -28,6 +28,7 @@ cp .env.example .env   # then edit .env
 | Variable | Purpose |
 | --- | --- |
 | `PUBLIC_SITE_NAME` | Brand name in header/footer/title |
+| `PUBLIC_SITE_URL` | Canonical site URL (canonical tags, sitemap, link previews) |
 | `PUBLIC_SITE_TAGLINE` | Footer tagline |
 | `PUBLIC_SITE_DESCRIPTION` | `<meta description>` |
 | `PUBLIC_UNIVERSITY` | Footer attribution (hidden if empty) |
