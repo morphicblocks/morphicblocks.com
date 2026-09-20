@@ -18,11 +18,19 @@ const legalLink = (base?: string, en?: string) => ({
   de: link(base),
 });
 
+// The organization name differs per language ("University" vs "Universität").
+// `PUBLIC_UNIVERSITY` is used everywhere; `PUBLIC_UNIVERSITY_DE` overrides it
+// on German pages. Leave the override unset and both languages share the base.
+const organization = (base?: string, de?: string) => ({
+  en: base ?? "",
+  de: de || base || "",
+});
+
 export const site = {
   name: env.PUBLIC_SITE_NAME ?? "",
   tagline: env.PUBLIC_SITE_TAGLINE ?? "",
   description: env.PUBLIC_SITE_DESCRIPTION ?? "",
-  university: env.PUBLIC_UNIVERSITY ?? "",
+  university: organization(env.PUBLIC_UNIVERSITY, env.PUBLIC_UNIVERSITY_DE),
   npmPackage: env.PUBLIC_NPM_PACKAGE ?? "",
   links: {
     docs: link(env.PUBLIC_DOCS_URL),

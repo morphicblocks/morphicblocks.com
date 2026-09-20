@@ -32,6 +32,7 @@ cp .env.example .env   # then edit .env
 | `PUBLIC_SITE_TAGLINE` | Footer tagline |
 | `PUBLIC_SITE_DESCRIPTION` | `<meta description>` |
 | `PUBLIC_UNIVERSITY` | Footer attribution (hidden if empty) |
+| `PUBLIC_UNIVERSITY_DE` | German name of the organization, used on `/de/` |
 | `PUBLIC_UNIVERSITY_URL` | Link target of the footer attribution |
 | `PUBLIC_NPM_PACKAGE` | Package name in the install command |
 | `PUBLIC_NPM_URL` | "View on npm" link |

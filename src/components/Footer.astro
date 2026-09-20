@@ -63,17 +63,17 @@ const cols = [
   <div class="container bottom">
     <span>&copy; {year} {site.name}</span>
     {
-      site.university &&
+      site.university[lang] &&
         (site.links.university ? (
           <a
             class="dev"
             href={site.links.university}
             {...externalAttrs(site.links.university)}>
-            {t.developedAt} {site.university}
+            {t.developedAt} {site.university[lang]}
           </a>
         ) : (
           <span class="dev">
-            {t.developedAt} {site.university}
+            {t.developedAt} {site.university[lang]}
           </span>
         ))
     }

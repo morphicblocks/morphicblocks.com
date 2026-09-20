@@ -5,6 +5,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_SITE_TAGLINE: string;
   readonly PUBLIC_SITE_DESCRIPTION: string;
   readonly PUBLIC_UNIVERSITY: string;
+  readonly PUBLIC_UNIVERSITY_DE: string;
   readonly PUBLIC_UNIVERSITY_URL: string;
   readonly PUBLIC_NPM_PACKAGE: string;
   readonly PUBLIC_NPM_URL: string;
