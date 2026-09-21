@@ -43,7 +43,7 @@ const modeImages = [
 <section class="hero">
   <div class="container hero-inner">
     <p class="eyebrow">{t.heroEyebrow}</p>
-    <h1>{t.heroHeadline[0]}<br />{t.heroHeadline[1]}</h1>
+    <h1>{t.heroHeadline}</h1>
     <p class="lede">{t.heroLede}</p>
     {
       (site.links.docs || site.links.playground) && (
@@ -162,8 +162,8 @@ const modeImages = [
     margin: 0 0 1rem;
   }
   .hero h1 {
-    font-size: clamp(2.3rem, 6vw, 3.75rem);
-    max-width: 15ch;
+    font-size: clamp(1.9rem, 4.6vw, 3rem);
+    text-wrap: balance;
   }
   .lede {
     color: var(--hero-muted);

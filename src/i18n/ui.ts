@@ -24,13 +24,11 @@ const en = {
 
   // hero
   heroEyebrow: "Open-source · TypeScript · built on Google Blockly",
-  heroHeadline: ["Render the same program", "in many modes."],
+  heroHeadline: "One definition, multiple representations.",
   heroLede:
     "Morphic Blocks is an embeddable TypeScript library built on top of " +
-    "Google Blockly. It renders one block model in multiple " +
-    "developer-defined modes — iconic, lexical, syntactic, or any " +
-    "representation you design — to support the gradual transition between " +
-    "block-based and text-based programming.",
+    "Google Blockly. One block model renders in as many representations as " +
+    "you define, from icons to real source code.",
   ctaDocs: "Read the docs",
   ctaPlayground: "Try the playground",
 
@@ -135,13 +133,12 @@ const de: Strings = {
 
   // hero
   heroEyebrow: "Open Source · TypeScript · basiert auf Google Blockly",
-  heroHeadline: ["Dasselbe Programm", "in vielen Modi darstellen."],
+  heroHeadline: "Eine Definition, viele Darstellungen.",
   heroLede:
     "Morphic Blocks ist eine einbettbare TypeScript-Bibliothek auf Basis von " +
-    "Google Blockly. Sie stellt ein einziges Blockmodell in mehreren selbst " +
-    "definierten Modi dar, ikonisch, lexikalisch, syntaktisch oder in jeder " +
-    "Repräsentation, die Sie entwerfen, und unterstützt so den schrittweisen " +
-    "Übergang zwischen block- und textbasiertem Programmieren.",
+    "Google Blockly. Ein einziges Blockmodell wird in so vielen " +
+    "Repräsentationen dargestellt, wie Sie definieren, von Symbolen bis zu " +
+    "echtem Quelltext.",
   ctaDocs: "Zur Dokumentation",
   ctaPlayground: "Playground ausprobieren",
 
