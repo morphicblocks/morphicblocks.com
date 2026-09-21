@@ -158,7 +158,9 @@ const modeImages = [
   <div class="qs-head">
     <div>
       <h2>{t.quickstartTitle}</h2>
-      <p>{t.quickstartBody}</p>
+      {t.quickstartBody.map((line) => (
+        <p>{line}</p>
+      ))}
       {
         site.links.docs && (
           <a
@@ -169,9 +171,6 @@ const modeImages = [
           </a>
         )
       }
-    </div>
-    <div class="qs-install">
-      <InstallCommand />
     </div>
   </div>
   <div class="qs-code">
@@ -285,26 +284,20 @@ const modeImages = [
     margin-top: 4.5rem;
   }
   .qs-head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
     margin-bottom: 1.2rem;
   }
+
   .qs-head h2 {
     font-size: clamp(1.4rem, 3vw, 1.9rem);
   }
   .qs-head p {
     color: var(--text-muted);
-    max-width: 46ch;
+    max-width: 76ch;
+    text-wrap: pretty;
     margin: 0.5rem 0 0.7rem;
   }
   .qs-docs {
     font-weight: 600;
-  }
-  .qs-install :global(.install) {
-    margin-top: 0;
   }
   .qs-code :global(pre) {
     margin: 0;

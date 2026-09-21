@@ -18,6 +18,7 @@ const en = {
   navDocs: "Docs",
   navPlayground: "Playground",
   navGithub: "GitHub",
+  navNpm: "npm",
   homeSuffix: "home",
   themeToggle: "Toggle color theme",
   languageLabel: "Language",
@@ -77,10 +78,11 @@ const en = {
 
   // quick start
   quickstartTitle: "Quick start",
-  quickstartBody:
-    "Install the package, hand it your definitions and behaviors, and mount. " +
+  quickstartBody: [
+    "Install the package, hand it your definitions and behaviors, and mount.",
     "That is the whole loop. The docs cover modes, toolbox, codespace, and " +
-    "behaviors in depth.",
+      "behaviors in depth.",
+  ],
   quickstartLink: "Read the full guide →",
 
   // screenshots
@@ -122,6 +124,7 @@ const de: Strings = {
   navDocs: "Doku",
   navPlayground: "Playground",
   navGithub: "GitHub",
+  navNpm: "npm",
   homeSuffix: "Startseite",
   themeToggle: "Farbschema umschalten",
   languageLabel: "Sprache",
@@ -185,10 +188,11 @@ const de: Strings = {
 
   // quick start
   quickstartTitle: "Schnellstart",
-  quickstartBody:
-    "Paket installieren, Definitionen und Verhalten übergeben, einbinden. " +
+  quickstartBody: [
+    "Paket installieren, Definitionen und Verhalten übergeben, einbinden.",
     "Das ist der gesamte Ablauf. Die Dokumentation behandelt Modi, Toolbox, " +
-    "Codespace und Verhalten im Detail.",
+      "Codespace und Verhalten im Detail.",
+  ],
   quickstartLink: "Zur vollständigen Anleitung →",
 
   // screenshots
