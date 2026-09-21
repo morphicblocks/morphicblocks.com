@@ -1,29 +1,63 @@
 ---
-// Screenshot slider — CSS scroll-snap, no JS. Images are placeholders in
-// public/screenshots/; replace the files to swap in real captures. The per-image
-// data (paths, alt text, captions per language) lives in
-// src/data/screenshots.json.
-import shots from "../data/screenshots.json";
+// Screenshot slider. CSS scroll-snap, no JS, so it behaves correctly with any
+// number of images, one included.
+//
+// Every image in public/screenshots/ is shown, in filename order, so adding a
+// capture means dropping the file in and nothing else. Prefix the names
+// (01-, 02-) when the order matters.
+//
+// Captions are optional: src/data/screenshots.json maps a filename to
+// localized alt text and a caption. A file with no entry still renders, with
+// a generic alt and no caption.
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
+import captions from "../data/screenshots.json";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+type Localized = Record<Lang, string>;
+type Entry = { alt?: Localized; caption?: Localized };
+
+// Resolved from the project root, not from import.meta.url: this component is
+// bundled into dist/ before it runs, so a URL relative to the module would
+// point inside the build output rather than at the source folder.
+const dir = join(process.cwd(), "public", "screenshots");
+// Also keeps stray files such as .DS_Store out of the slider.
+const IMAGE = /\.(png|jpe?g|webp|avif|gif|svg)$/i;
+
+const shots = readdirSync(dir)
+  .filter((file) => IMAGE.test(file))
+  .sort()
+  .map((file) => {
+    const entry = (captions as Record<string, Entry>)[file];
+    return {
+      src: `/screenshots/${file}`,
+      alt: entry?.alt?.[lang] ?? t.screenshotAltFallback,
+      caption: entry?.caption?.[lang],
+    };
+  });
 ---
 
-<section class="container shots" aria-label={t.screenshotsAria}>
-  <h2>{t.screenshotsTitle}</h2>
-  <p class="hint">{t.screenshotsHint}</p>
-  <div class="slider" tabindex="0">
-    {
-      shots.map((s) => (
-        <figure class="slide">
-          <img src={s.src} alt={s.alt[lang]} loading="lazy" />
-          <figcaption>{s.caption[lang]}</figcaption>
-        </figure>
-      ))
-    }
-  </div>
-</section>
+{
+  shots.length > 0 && (
+    <section class="container shots" aria-label={t.screenshotsAria}>
+      <h2>{t.screenshotsTitle}</h2>
+      {/* Only promise scrolling when there is something to scroll to. */}
+      {shots.length > 1 && <p class="hint">{t.screenshotsHint}</p>}
+      <div class="slider" tabindex="0">
+        {shots.map((s) => (
+          <figure class="slide">
+            <img src={s.src} alt={s.alt} loading="lazy" />
+            {s.caption && <figcaption>{s.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 <style>
   .shots {
@@ -35,13 +69,15 @@ const t = useTranslations(lang);
   .hint {
     color: var(--text-muted);
     font-size: 0.92rem;
-    margin: 0.4rem 0 1.2rem;
+    margin: 0.4rem 0 0;
   }
   .slider {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: min(100%, 860px);
     gap: 1.1rem;
+    /* Set here rather than on .hint, which does not always render. */
+    margin-top: 1.2rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 0.6rem;

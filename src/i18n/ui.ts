@@ -86,8 +86,9 @@ const en = {
 
   // screenshots
   screenshotsTitle: "See it in action",
-  screenshotsHint: "Scroll or swipe — placeholders until real captures land.",
+  screenshotsHint: "Scroll or swipe to see more.",
   screenshotsAria: "Screenshots",
+  screenshotAltFallback: "Screenshot of Morphic Blocks",
 
   // closing
   closingTitle: "Build your own multi-modal environment",
@@ -199,9 +200,9 @@ const de: Strings = {
 
   // screenshots
   screenshotsTitle: "So sieht es aus",
-  screenshotsHint:
-    "Scrollen oder wischen. Platzhalter, bis echte Aufnahmen vorliegen.",
+  screenshotsHint: "Scrollen oder wischen, um mehr zu sehen.",
   screenshotsAria: "Screenshots",
+  screenshotAltFallback: "Screenshot von Morphic Blocks",
 
   // closing
   closingTitle: "Bauen Sie Ihre eigene multimodale Umgebung",

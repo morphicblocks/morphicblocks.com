@@ -54,14 +54,16 @@ happens in one place: `src/config.ts`.
 
 ```text
 public/            # static assets served as-is
-  logo.svg         # PLACEHOLDER logo — replace with the real mark
+  logo.svg         # PLACEHOLDER logo, replace with the real mark
   favicon.svg
+  modes/           # one capture per mode, paired by order with i18n/ui.ts
+  screenshots/     # every image here appears in the slider, see below
 src/
   config.ts        # single source for all env-driven values
   env.d.ts         # typed env vars
   i18n/ui.ts       # display strings, per language
   i18n/utils.ts    # language detection and locale-aware paths
-  data/screenshots.json  # slider images + per-language captions
+  data/screenshots.json  # optional slider captions, keyed by filename
   layouts/Base.astro
   components/Header.astro, Footer.astro, Landing.astro
   pages/index.astro      # English (default, unprefixed)
@@ -89,6 +91,19 @@ are written once. To add a language: add an entry to `ui.ts`, list its code in
 `languages`, add it to `i18n.locales` in `astro.config.mjs`, and create
 `src/pages/<code>/index.astro` mirroring the German page. Code samples stay in
 English.
+
+## Screenshots
+
+The slider shows **every image in `public/screenshots/`**, so adding a capture
+is a matter of dropping the file in. Files are ordered by name, so prefix them
+(`01-`, `02-`) when the order matters.
+
+Captions are optional. `src/data/screenshots.json` maps a filename to alt text
+and a caption per language; a file with no entry still appears, with a generic
+alt and no caption. The slider is CSS scroll-snap with no JavaScript, so it
+works with any number of images, one included: with a single image the
+"scroll or swipe" hint is not rendered, and with none the section is dropped
+entirely.
 
 ## Notes
 
