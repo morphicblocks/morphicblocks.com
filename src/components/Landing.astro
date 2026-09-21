@@ -93,7 +93,7 @@ const modeImages = [
     <h1>{t.heroHeadline}</h1>
     <p class="lede">{t.heroLede}</p>
     {
-      (site.links.docs || site.links.playground) && (
+      (site.links.docs || site.links.playground || site.links.github) && (
         <div class="cta">
           {site.links.docs && (
             <a
@@ -109,6 +109,14 @@ const modeImages = [
               href={site.links.playground}
               {...externalAttrs(site.links.playground)}>
               {t.ctaPlayground}
+            </a>
+          )}
+          {site.links.github && (
+            <a
+              class="btn btn-ghost"
+              href={site.links.github}
+              {...externalAttrs(site.links.github)}>
+              {t.ctaGithub}
             </a>
           )}
         </div>
@@ -174,25 +182,6 @@ const modeImages = [
 <!-- Screenshots -->
 <Screenshots />
 
-<!-- Closing CTA -->
-<section class="container closing">
-  <div class="closing-card">
-    <h2>{t.closingTitle}</h2>
-    <p>{t.closingBody}</p>
-    {
-      site.links.github && (
-        <div class="cta">
-          <a
-            class="btn btn-primary"
-            href={site.links.github}
-            {...externalAttrs(site.links.github)}>
-            {t.closingCta}
-          </a>
-        </div>
-      )
-    }
-  </div>
-</section>
 
 <style>
   /* Hero */
@@ -326,29 +315,6 @@ const modeImages = [
     line-height: 1.6;
   }
 
-  /* Closing */
-  .closing {
-    margin-top: 4.5rem;
-  }
-  .closing-card {
-    background: var(--accent-gradient);
-    color: #fff;
-    border-radius: calc(var(--radius) + 4px);
-    padding: clamp(2rem, 5vw, 3.2rem);
-    text-align: center;
-  }
-  .closing-card h2 {
-    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
-  }
-  .closing-card p {
-    max-width: 52ch;
-    margin: 0.8rem auto 1.6rem;
-    color: rgba(255, 255, 255, 0.92);
-  }
-  .closing-card .btn-primary {
-    background: #fff;
-    color: var(--accent);
-  }
 
   @media (max-width: 780px) {
     .modes-grid,

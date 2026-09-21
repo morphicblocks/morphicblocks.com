@@ -31,6 +31,7 @@ const en = {
     "you define, from icons to real source code.",
   ctaDocs: "Read the docs",
   ctaPlayground: "Try the playground",
+  ctaGithub: "View on GitHub",
 
   // modes strip
   modesLabel: "Same statement, three modes",
@@ -88,12 +89,6 @@ const en = {
   screenshotsAria: "Screenshots",
   screenshotAltFallback: "Screenshot of Morphic Blocks",
 
-  // closing
-  closingTitle: "Build your own multi-modal environment",
-  closingBody:
-    "Embed Morphic Blocks as a library, define your modes, and ship a " +
-    "workspace that meets learners where they are.",
-  closingCta: "View on GitHub",
 
   // install command
   installCopy: "Copy install command",
@@ -141,6 +136,7 @@ const de: Strings = {
     "echtem Quelltext.",
   ctaDocs: "Zur Dokumentation",
   ctaPlayground: "Playground ausprobieren",
+  ctaGithub: "Auf GitHub ansehen",
 
   // modes strip
   modesLabel: "Dieselbe Anweisung, drei Modi",
@@ -201,13 +197,6 @@ const de: Strings = {
   screenshotsAria: "Screenshots",
   screenshotAltFallback: "Screenshot von Morphic Blocks",
 
-  // closing
-  closingTitle: "Bauen Sie Ihre eigene multimodale Umgebung",
-  closingBody:
-    "Binden Sie Morphic Blocks als Bibliothek ein, definieren Sie Ihre Modi " +
-    "und liefern Sie einen Arbeitsbereich, der Lernende dort abholt, wo sie " +
-    "stehen.",
-  closingCta: "Auf GitHub ansehen",
 
   // install command
   installCopy: "Installationsbefehl kopieren",
