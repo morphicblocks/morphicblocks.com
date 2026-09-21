@@ -30,11 +30,12 @@ engine.mount({
 // switch representation at runtime — blocks re-render
 engine.setModes({ workspaceMode: "syntactic" });`;
 
-// Placeholder captures in public/modes/, paired with the localized labels.
+// Captures in public/modes/, paired by index with the localized labels in
+// t.modes, so this order is what binds each image to its name.
 const modeImages = [
-  "/modes/iconic.svg",
-  "/modes/lexical.svg",
-  "/modes/syntactic.svg",
+  "/modes/iconic.png",
+  "/modes/conceptual.png",
+  "/modes/syntactic.png",
 ];
 ---
 
@@ -79,7 +80,6 @@ const modeImages = [
         <div class="mode-card">
           <span class="mode-name">{m.name}</span>
           <img src={modeImages[i]} alt={m.alt} loading="lazy" />
-          <code class="mode-sample">{m.sample}</code>
         </div>
       ))
     }
@@ -217,11 +217,6 @@ const modeImages = [
     letter-spacing: 0.06em;
     color: var(--eyebrow);
     font-weight: 700;
-  }
-  .mode-sample {
-    font-family: var(--font-mono);
-    font-size: 0.98rem;
-    color: var(--text);
   }
 
   /* Features */

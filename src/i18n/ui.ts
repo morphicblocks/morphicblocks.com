@@ -37,16 +37,17 @@ const en = {
   // modes strip
   modesLabel: "Same statement, three modes",
   modes: [
-    { name: "Iconic", alt: "Iconic mode placeholder", sample: "🖨  ( … )" },
     {
-      name: "Lexical",
-      alt: "Lexical mode placeholder",
-      sample: "print ( message )",
+      name: "Simple",
+      alt: "The Print block in simple mode: a printer icon, the label Print, and a one line description",
     },
     {
-      name: "Syntactic",
-      alt: "Syntactic mode placeholder",
-      sample: "console.log(message);",
+      name: "Pseudo",
+      alt: "The Print block in pseudo mode: a block labelled Output with an empty input slot",
+    },
+    {
+      name: "Syntax-JS",
+      alt: "The Print block in syntax-js mode: console.log with an empty argument",
     },
   ],
 
@@ -147,19 +148,16 @@ const de: Strings = {
   modesLabel: "Dieselbe Anweisung, drei Modi",
   modes: [
     {
-      name: "Ikonisch",
-      alt: "Platzhalter für den ikonischen Modus",
-      sample: "🖨  ( … )",
+      name: "Simple",
+      alt: "Der Print-Block im Modus Simple: ein Druckersymbol, die Bezeichnung Print und eine einzeilige Beschreibung",
     },
     {
-      name: "Lexikalisch",
-      alt: "Platzhalter für den lexikalischen Modus",
-      sample: "print ( message )",
+      name: "Pseudo",
+      alt: "Der Print-Block im Modus Pseudo: ein Block mit der Aufschrift Output und einem leeren Eingabefeld",
     },
     {
-      name: "Syntaktisch",
-      alt: "Platzhalter für den syntaktischen Modus",
-      sample: "console.log(message);",
+      name: "Syntax-JS",
+      alt: "Der Print-Block im Modus Syntax-JS: console.log mit einem leeren Argument",
     },
   ],
 
