@@ -54,7 +54,7 @@ const en = {
     {
       title: "One block, many modes",
       body:
-        "A single morphic block carries several visual elements — icons, " +
+        "A single morphic block carries several visual elements: icons, " +
         "natural-language labels, and code templates. Modes decide which are " +
         "shown, and switch at runtime without remounting.",
     },
@@ -69,8 +69,8 @@ const en = {
       title: "Built for transition",
       body:
         "Render the same program as icons, blocks, or text to scaffold the " +
-        "gradual path from block-based to text-based programming — one " +
-        "framework, many learning stages.",
+        "gradual path from block-based to text-based programming, with one " +
+        "framework across many learning stages.",
     },
   ],
 
@@ -78,7 +78,7 @@ const en = {
   quickstartTitle: "Quick start",
   quickstartBody:
     "Install the package, hand it your definitions and behaviors, and mount. " +
-    "That's the whole loop — the docs cover modes, toolbox, codespace, and " +
+    "That is the whole loop. The docs cover modes, toolbox, codespace, and " +
     "behaviors in depth.",
   quickstartLink: "Read the full guide →",
 
