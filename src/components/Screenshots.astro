@@ -12,6 +12,7 @@
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
 import captions from "../data/screenshots.json";
+import { site, externalAttrs } from "../config";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import type { Lang } from "../i18n/ui";
 
@@ -44,7 +45,17 @@ const shots = readdirSync(dir)
 {
   shots.length > 0 && (
     <section class="container shots" aria-label={t.screenshotsAria}>
-      <h2>{t.screenshotsTitle}</h2>
+      <div class="shots-head">
+        <h2>{t.screenshotsTitle}</h2>
+        {site.links.playground && (
+          <a
+            class="btn btn-primary"
+            href={site.links.playground}
+            {...externalAttrs(site.links.playground)}>
+            {t.ctaPlayground}
+          </a>
+        )}
+      </div>
       {/* Only promise scrolling when there is something to scroll to. */}
       {shots.length > 1 && <p class="hint">{t.screenshotsHint}</p>}
       <div class="slider" tabindex="0">
@@ -63,6 +74,13 @@ const shots = readdirSync(dir)
   .shots {
     margin-top: 4.5rem;
   }
+  .shots-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
   h2 {
     font-size: clamp(1.4rem, 3vw, 1.9rem);
   }
@@ -74,7 +92,7 @@ const shots = readdirSync(dir)
   .slider {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: min(100%, 860px);
+    grid-auto-columns: 100%;
     gap: 1.1rem;
     /* Set here rather than on .hint, which does not always render. */
     margin-top: 1.2rem;
