@@ -207,7 +207,16 @@ const modeImages = [
     flex-direction: column;
     gap: 0.65rem;
   }
+  /* The three captures are the same width but not the same height (263, 287
+     and 144px), which left the cards ragged. A shared box built from the
+     tallest of them, with the capture fitted inside, lines them up without
+     cropping anything. The fill is the captures' own edge colour, so the
+     letterboxing on the shorter ones does not read as a gap. */
   .mode-card img {
+    width: 100%;
+    aspect-ratio: 592 / 287;
+    object-fit: contain;
+    background: #e5e5e5;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
   }
