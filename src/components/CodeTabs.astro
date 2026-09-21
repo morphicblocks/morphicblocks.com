@@ -1,0 +1,163 @@
+---
+// Tabbed code panels, one per file.
+//
+// Progressive enhancement: every panel renders visible with its filename as a
+// heading, and the script below hides all but the selected one and reveals the
+// tab strip. Without JavaScript the reader still sees all the files, in order,
+// so nothing is ever hidden by a script that failed to run.
+import { Code } from "astro:components";
+
+interface TabFile {
+  /** Shown on the tab. Filenames stay untranslated. */
+  name: string;
+  /** Shiki language id. */
+  lang: string;
+  code: string;
+}
+
+const { files, label } = Astro.props as { files: TabFile[]; label: string };
+// Unique per instance, so more than one group can share a page.
+const uid = Math.random().toString(36).slice(2, 8);
+---
+
+<div class="code-tabs" data-code-tabs>
+  <div class="tablist" role="tablist" aria-label={label}>
+    {
+      files.map((f, i) => (
+        <button
+          type="button"
+          role="tab"
+          id={`${uid}-tab-${i}`}
+          aria-controls={`${uid}-panel-${i}`}
+          aria-selected={i === 0 ? "true" : "false"}
+          tabindex={i === 0 ? 0 : -1}>
+          {f.name}
+        </button>
+      ))
+    }
+  </div>
+  <div class="panels">
+    {
+      files.map((f, i) => (
+        <div
+          class="panel"
+          role="tabpanel"
+          id={`${uid}-panel-${i}`}
+          aria-labelledby={`${uid}-tab-${i}`}>
+          <span class="panel-name">{f.name}</span>
+          <Code code={f.code} lang={f.lang} theme="github-dark" />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  for (const group of document.querySelectorAll<HTMLElement>("[data-code-tabs]")) {
+    const tabs = [...group.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...group.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+    if (tabs.length === 0) continue;
+
+    const select = (index: number) => {
+      tabs.forEach((tab, i) => {
+        tab.setAttribute("aria-selected", String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+      });
+      panels.forEach((panel, i) => (panel.hidden = i !== index));
+    };
+
+    tabs.forEach((tab, i) => tab.addEventListener("click", () => select(i)));
+
+    group.querySelector('[role="tablist"]')?.addEventListener("keydown", (event) => {
+      const key = (event as KeyboardEvent).key;
+      const current = tabs.findIndex(
+        (tab) => tab.getAttribute("aria-selected") === "true",
+      );
+      const next =
+        key === "ArrowRight" ? current + 1 : key === "ArrowLeft" ? current - 1 : -1;
+      if (next < 0 || next >= tabs.length) return;
+      event.preventDefault();
+      select(next);
+      tabs[next].focus();
+    });
+
+    // Flips the CSS from the no-JS layout to the tabbed one.
+    group.dataset.enhanced = "true";
+    select(0);
+  }
+</script>
+
+<style>
+  .panels {
+    overflow: hidden;
+    border-radius: 0 var(--radius) var(--radius) var(--radius);
+  }
+  /* Once enhanced every panel occupies the same grid cell, so the box is as
+     tall as the tallest file and does not resize when the tab changes. The
+     inactive ones stay laid out but are hidden from sight and from assistive
+     technology. */
+  .code-tabs[data-enhanced] .panels {
+    display: grid;
+  }
+  .code-tabs[data-enhanced] .panel {
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+  .panel[hidden] {
+    display: none;
+  }
+  .code-tabs[data-enhanced] .panel[hidden] {
+    display: block;
+    visibility: hidden;
+  }
+  /* Until the script runs, the tabs do nothing, so they stay hidden and each
+     panel shows its own filename instead. */
+  .code-tabs:not([data-enhanced]) .tablist {
+    display: none;
+  }
+  .code-tabs[data-enhanced] .panel-name {
+    display: none;
+  }
+  .panel-name {
+    display: block;
+    padding-inline: 1.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0.9rem 0 0.35rem;
+  }
+  /* Editor-style tab strip: the tabs carry the border, the code below does
+     not, and the active tab joins onto the panel beneath it. */
+  .tablist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .tablist button {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    padding: 0.7rem 1.05rem;
+    cursor: pointer;
+    /* Sits over the strip's own border, so the active tab reads as connected
+       to the panel rather than boxed off from it. */
+    margin-bottom: -1px;
+  }
+  .tablist button:hover {
+    color: var(--text);
+  }
+  .tablist button[aria-selected="true"] {
+    color: var(--text);
+    background: var(--surface);
+    border-color: var(--border);
+  }
+  .tablist button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>

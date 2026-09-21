@@ -1,7 +1,7 @@
 ---
 // The landing page body. Rendered by both `/` and `/de/`; all copy comes from
 // src/i18n, so the two locales share one set of markup and styles.
-import { Code } from "astro:components";
+import CodeTabs from "./CodeTabs.astro";
 import Screenshots from "./Screenshots.astro";
 import InstallCommand from "./InstallCommand.astro";
 import { site, externalAttrs } from "../config";
@@ -10,25 +10,72 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Code samples stay in English, as usual for developer documentation.
-const quickstart = `import { MorphicBlocks } from "${site.npmPackage}";
+// Code samples stay in English, as usual for developer documentation. These
+// mirror the docs quick start so the two cannot drift apart. main.ts leads,
+// being the file a reader wants first; the tab strip follows this order.
+const quickstartFiles = [
+  {
+    name: "main.ts",
+    lang: "ts",
+    code: `import { MorphicBlocks } from "${site.npmPackage}";
 import definitions from "./definitions.json";
 import { behaviors } from "./behaviors";
 
-// definitions declare your blocks, elements, and modes
-const engine = new MorphicBlocks(
-  definitions.blocks,
-  behaviors,
-  definitions.elementTypes,
-);
+// The constructor takes the whole definitions file plus your behaviors.
+const engine = new MorphicBlocks(definitions, behaviors);
 
 engine.mount({
-  workspaceContainer: document.getElementById("app"),
-  modes: definitions.modes,
+  workspaceContainer: document.getElementById("workspace")!,
+  workspaceMode: "conceptual",
+  toolboxMode: "conceptual",
 });
 
-// switch representation at runtime — blocks re-render
-engine.setModes({ workspaceMode: "syntactic" });`;
+engine.mountToolbox(document.getElementById("toolbox")!);
+
+// Switch representation at runtime; the same blocks re-render.
+engine.setModes({ workspaceMode: "python", toolboxMode: "python" });`,
+  },
+  {
+    name: "definitions.json",
+    lang: "json",
+    code: `{
+  "elementTypes": {
+    "title":      "text",
+    "conceptual": "code",
+    "python":     "code"
+  },
+  "modes": [
+    { "name": "conceptual", "elements": ["title", "conceptual"] },
+    { "name": "python",     "elements": ["title", "python"] }
+  ],
+  "blocks": [
+    {
+      "identifier": "text_print",
+      "elements": {
+        "title":      "Print",
+        "conceptual": "Output %1",
+        "python":     "print(%1)"
+      },
+      "inputSlots": {
+        "1": { "kind": "value", "name": "TEXT" }
+      }
+    }
+  ]
+}`,
+  },
+  {
+    name: "behaviors.ts",
+    lang: "ts",
+    code: `import type { MorphicBehaviorMap } from "${site.npmPackage}";
+
+// One function per block identifier, returning the executable JavaScript.
+export const behaviors: MorphicBehaviorMap = {
+  text_print(proxy) {
+    return \`console.log(\${proxy.inputs.TEXT ?? "undefined"});\\n\`;
+  },
+};`,
+  },
+];
 
 // Captures in public/modes/, paired by index with the localized labels in
 // t.modes, so this order is what binds each image to its name.
@@ -120,7 +167,7 @@ const modeImages = [
     </div>
   </div>
   <div class="qs-code">
-    <Code code={quickstart} lang="ts" theme="github-dark" />
+    <CodeTabs files={quickstartFiles} label={t.quickstartTitle} />
   </div>
 </section>
 
@@ -271,11 +318,10 @@ const modeImages = [
     margin-top: 0;
   }
   .qs-code :global(pre) {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    margin: 0;
     padding: 1.2rem 1.3rem;
-    overflow-x: auto;
-    box-shadow: var(--shadow);
+    overflow: auto;
+    height: 100%;
     font-size: 0.9rem;
     line-height: 1.6;
   }
