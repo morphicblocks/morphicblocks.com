@@ -156,6 +156,9 @@ network. It expects Traefik to be running already and attached to that
 network. Traefik terminates TLS and forwards plain HTTP to the container, so
 nginx listens on port 80 only and holds no certificate.
 
+`www.` in front of `DEPLOY_DOMAIN` is routed too and redirects permanently to
+the bare domain, so point both names at the host in DNS.
+
 `DEPLOY_DOMAIN` is the one value that differs per deployment, along with
 `HTTP_PROXY` and friends if the build host needs a proxy. Everything else
 (image and container names, the loopback port, the entrypoint and network
