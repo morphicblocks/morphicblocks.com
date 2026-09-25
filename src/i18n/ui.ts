@@ -28,8 +28,8 @@ const en = {
   heroHeadline: "One definition, multiple representations.",
   heroLede:
     "Morphic Blocks is an embeddable TypeScript library built on top of " +
-    "Google Blockly. One block model renders in as many representations as " +
-    "you define, from icons to real source code.",
+    "Google Blockly. One block model renders in any number of custom " +
+    "representations, from icons to real source code.",
   ctaDocs: "Read the docs",
   ctaPlayground: "Try the playground",
   ctaGithub: "View on GitHub",
@@ -63,16 +63,16 @@ const en = {
     {
       title: "Declarative & config-driven",
       body:
-        "Define blocks in JSON, behaviors in TypeScript, and one CSS file per " +
-        "mode. Extend or restyle an environment by editing config, not " +
-        "Blockly's multi-file imperative setup.",
+        "Blocks in JSON, behaviors in TypeScript, and one CSS file per mode. " +
+        "An environment is extended or restyled by editing config, not " +
+        "through Blockly's multi-file imperative setup.",
     },
     {
       title: "Built for transition",
       body:
-        "Render the same program as icons, blocks, or text to scaffold the " +
-        "gradual path from block-based to text-based programming, with one " +
-        "framework across many learning stages.",
+        "The same program can be shown as icons, blocks, or text, " +
+        "scaffolding the gradual path from block-based to text-based " +
+        "programming, with one framework across many learning stages.",
     },
     {
       title: "No external requests",
@@ -86,7 +86,7 @@ const en = {
   // quick start
   quickstartTitle: "Quick start",
   quickstartBody: [
-    "Install the package, hand it your definitions and behaviors, and mount.",
+    "Install the package, pass in the definitions and behaviors, mount.",
     "That is the whole loop. The docs cover modes, toolbox, codespace, and " +
       "behaviors in depth.",
   ],
@@ -141,9 +141,9 @@ const de: Strings = {
   heroHeadline: "Eine Definition, viele Darstellungen.",
   heroLede:
     "Morphic Blocks ist eine einbettbare TypeScript-Bibliothek auf Basis von " +
-    "Google Blockly. Ein einziges Blockmodell wird in so vielen " +
-    "Repräsentationen dargestellt, wie Sie definieren, von Symbolen bis zu " +
-    "echtem Quelltext.",
+    "Google Blockly. Ein einziges Blockmodell wird in beliebig vielen " +
+    "eigenen Repräsentationen dargestellt, von Symbolen bis zu echtem " +
+    "Quelltext.",
   ctaDocs: "Zur Dokumentation",
   ctaPlayground: "Playground ausprobieren",
   ctaGithub: "Auf GitHub ansehen",
@@ -186,8 +186,8 @@ const de: Strings = {
     {
       title: "Für den Übergang gemacht",
       body:
-        "Stellen Sie dasselbe Programm als Symbole, Blöcke oder Text dar und " +
-        "begleiten Sie damit den schrittweisen Weg vom block- zum " +
+        "Dasselbe Programm lässt sich als Symbole, Blöcke oder Text " +
+        "darstellen und begleitet so den schrittweisen Weg vom block- zum " +
         "textbasierten Programmieren, mit einem Framework über viele " +
         "Lernstufen hinweg.",
     },
