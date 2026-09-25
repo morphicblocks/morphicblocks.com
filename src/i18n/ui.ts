@@ -74,6 +74,13 @@ const en = {
         "gradual path from block-based to text-based programming, with one " +
         "framework across many learning stages.",
     },
+    {
+      title: "No external requests",
+      body:
+        "The framework never contacts another server. So the site alone " +
+        "decides which requests a browser makes during a visit. Blockly's " +
+        "images and sounds can be served from the same site too.",
+    },
   ],
 
   // quick start
@@ -183,6 +190,14 @@ const de: Strings = {
         "begleiten Sie damit den schrittweisen Weg vom block- zum " +
         "textbasierten Programmieren, mit einem Framework über viele " +
         "Lernstufen hinweg.",
+    },
+    {
+      title: "Keine externen Anfragen",
+      body:
+        "Das Framework kontaktiert keinen anderen Server. So bestimmt allein " +
+        "die eigene Seite, welche Anfragen ein Browser beim Besuch stellt. Auch " +
+        "die Bilder und Sounds von Blockly lassen sich von derselben Seite " +
+        "ausliefern.",
     },
   ],
 
