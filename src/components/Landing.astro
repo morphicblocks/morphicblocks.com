@@ -24,13 +24,11 @@ import { behaviors } from "./behaviors";
 // The constructor takes the whole definitions file plus your behaviors.
 const engine = new MorphicBlocks(definitions, behaviors);
 
+// One call sets up every view it gets a container for.
 engine.mount({
   workspaceContainer: document.getElementById("workspace")!,
-  workspaceMode: "conceptual",
-  toolboxMode: "conceptual",
+  toolboxContainer: document.getElementById("toolbox")!,
 });
-
-engine.mountToolbox(document.getElementById("toolbox")!);
 
 // Switch representation at runtime; the same blocks re-render.
 engine.setModes({ workspaceMode: "python", toolboxMode: "python" });`,
