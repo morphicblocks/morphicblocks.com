@@ -6,12 +6,12 @@
   ],
   "UI.png": {
     "alt": {
-      "en": "The editor in its hybrid preset: an icon toolbox on the left, a block workspace in pseudo mode, and the same program as Python and JavaScript source beside it, with the program output below",
-      "de": "Der Editor im Hybrid-Preset: links eine Symbol-Toolbox, daneben ein Block-Arbeitsbereich im Modus Pseudo und dasselbe Programm als Python- und JavaScript-Quelltext, darunter die Ausgabe"
+      "en": "The editor in its hybrid preset: a toolbox with blocks and their Python lines, a block workspace in pseudo mode, the same program as editable Python and read only JavaScript beside it, and the program's output below",
+      "de": "Der Editor im Hybrid-Preset: eine Toolbox mit Blöcken und ihren Python-Zeilen, ein Block-Arbeitsbereich im Modus Pseudo, daneben dasselbe Programm als bearbeitbares Python und schreibgeschütztes JavaScript, darunter die Ausgabe"
     },
     "caption": {
-      "en": "Toolbox, workspace and two source views of one program",
-      "de": "Toolbox, Arbeitsbereich und zwei Quelltextansichten desselben Programms"
+      "en": "Toolbox, workspace and two text views of one program",
+      "de": "Toolbox, Arbeitsbereich und zwei Textansichten desselben Programms"
     }
   }
 }
