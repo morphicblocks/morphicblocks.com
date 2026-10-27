@@ -31,7 +31,7 @@ engine.mount({
 });
 
 // Switch representation at runtime; the same blocks re-render.
-engine.setModes({ workspaceMode: "python", toolboxMode: "python" });`,
+engine.show({ toolbox: "python", views: { workspace: "python" } });`,
   },
   {
     name: "definitions.json",
